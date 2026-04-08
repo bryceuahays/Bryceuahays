@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bryce | Video Editor & Creator</title>
+  <meta name="description" content="Video editor and content creator portfolio for social content, cinematic edits, trailers, and branded videos." />
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-soft: #121933;
+      --card: rgba(255,255,255,0.06);
+      --text: #f5f7fb;
+      --muted: #b8c0d9;
+      --line: rgba(255,255,255,0.12);
+      --accent: #7c9cff;
+      --accent-2: #8ef0d0;
+      --shadow: 0 20px 50px rgba(0,0,0,0.35);
+      --radius: 22px;
+      --max: 1120px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(124,156,255,0.16), transparent 35%),
+        radial-gradient(circle at top right, rgba(142,240,208,0.14), transparent 30%),
+        linear-gradient(180deg, #0b1020 0%, #090d18 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(var(--max), calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(7, 10, 18, 0.65);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.95rem 0;
+      gap: 1rem;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-size: 0.95rem;
+    }
+
+    .brand span { color: var(--accent-2); }
+
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      padding: 0.9rem 1.25rem;
+      font-weight: 700;
+      transition: transform 0.2s ease, opacity 0.2s ease, border-color 0.2s ease;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #9d8bff);
+      color: white;
+      box-shadow: var(--shadow);
+    }
+    .btn-secondary {
+      border-color: var(--line);
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
+    }
+
+    .hero {
+      padding: 5rem 0 3rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.45rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 5vw, 4.8rem);
+      line-height: 1.05;
+      margin: 0 0 1rem;
+      letter-spacing: -0.04em;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.08rem;
+      max-width: 60ch;
+      margin: 0 0 1.5rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 0.85rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .metric {
+      padding: 1rem;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 1.5rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1rem;
+      box-shadow: var(--shadow);
+    }
+
+    .reel {
+      aspect-ratio: 16 / 10;
+      border-radius: 18px;
+      overflow: hidden;
+      background: #060912;
+      border: 1px solid rgba(255,255,255,0.08);
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .reel iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    section {
+      padding: 2rem 0 1rem;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: end;
+      margin-bottom: 1.25rem;
+    }
+
+    .section-header h2 {
+      margin: 0;
+      font-size: clamp(1.7rem, 3vw, 2.4rem);
+      letter-spacing: -0.03em;
+    }
+
+    .section-header p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 55ch;
+    }
+
+    .grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .work-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .thumb {
+      aspect-ratio: 16 / 10;
+      background: linear-gradient(135deg, rgba(124,156,255,0.3), rgba(142,240,208,0.2));
+      display: grid;
+      place-items: center;
+      color: rgba(255,255,255,0.8);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .card-body {
+      padding: 1rem;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 0.35rem 0.65rem;
+      font-size: 0.78rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.09);
+      color: var(--muted);
+      margin-bottom: 0.7rem;
+    }
+
+    .card h3 {
+      margin: 0 0 0.45rem;
+      font-size: 1.05rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .services {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .service {
+      padding: 1.25rem;
+    }
+
+    .service h3 { margin-top: 0; }
+
+    .about {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 1rem;
+    }
+
+    .about-panel, .contact-panel {
+      padding: 1.25rem;
+    }
+
+    .list {
+      margin: 1rem 0 0;
+      padding-left: 1.1rem;
+      color: var(--muted);
+    }
+
+    .contact-box {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .contact-panel p, .about-panel p { color: var(--muted); }
+
+    .footer {
+      padding: 2.5rem 0 4rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid,
+      .about,
+      .work-grid,
+      .services,
+      .contact-box {
+        grid-template-columns: 1fr;
+      }
+
+      .metrics {
+        grid-template-columns: 1fr;
+      }
+
+      .section-header {
+        align-items: start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="#top" class="brand">Bryce<span>Creates</span></a>
+      <div class="nav-links">
+        <a href="#work">Work</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#contact" class="btn btn-secondary">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow">Video Editing • Content Creation • Story-Driven Work</div>
+        <h1>I help brands and creators turn raw footage into videos people actually remember.</h1>
+        <p>
+          I edit short-form content, cinematic trailers, YouTube videos, and social cuts with a focus on pacing, emotion, and retention. If you need someone who can shape a strong story instead of just stacking clips, you're in the right place.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#contact">Book a Project</a>
+          <a class="btn btn-secondary" href="#work">View My Work</a>
+        </div>
+        <div class="metrics">
+          <div class="metric">
+            <strong>Short Form</strong>
+            <span>Reels, TikToks, YouTube Shorts</span>
+          </div>
+          <div class="metric">
+            <strong>Long Form</strong>
+            <span>YouTube edits, story-driven videos</span>
+          </div>
+          <div class="metric">
+            <strong>Creative Focus</strong>
+            <span>Pacing, emotion, clean visual polish</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="reel">
+          <!-- Replace this block with your showreel embed -->
+          <!-- Example YouTube embed: <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe> -->
+          <div>
+            <strong style="display:block; font-size:1.2rem; color:#fff; margin-bottom:0.5rem;">Featured Reel</strong>
+            Add your best 30–60 second reel here.<br />
+            Lead with fast cuts, your strongest work first, and on-screen labels for the kind of clients you want.
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="work">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2>Selected Work</h2>
+            <p>Swap these placeholders for your real projects. Even if you only have a few strong samples, that is enough to start.</p>
+          </div>
+        </div>
+
+        <div class="grid work-grid">
+          <article class="card">
+            <div class="thumb">Project 01</div>
+            <div class="card-body">
+              <div class="tag">Short Form Editing</div>
+              <h3>High-Retention Social Edit</h3>
+              <p>Hook-first pacing, captions, music syncing, motion emphasis, and fast visual flow for vertical platforms.</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="thumb">Project 02</div>
+            <div class="card-body">
+              <div class="tag">YouTube / Narrative</div>
+              <h3>Story-Driven Long-Form Video</h3>
+              <p>Built around structure, emotional beats, clip selection, and clean transitions that support the story.</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="thumb">Project 03</div>
+            <div class="card-body">
+              <div class="tag">Brand / Promo</div>
+              <h3>Promotional Trailer</h3>
+              <p>Designed to sell a feeling fast with polished visuals, sound design, title cards, and a strong finish.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2>What I Can Help With</h2>
+            <p>Keep this tight. Potential clients should understand your value in under 20 seconds.</p>
+          </div>
+        </div>
+
+        <div class="grid services">
+          <div class="card service">
+            <h3>Short-Form Content</h3>
+            <p>Vertical edits for TikTok, Instagram Reels, and YouTube Shorts with strong hooks, captions, pacing, and replay-friendly flow.</p>
+          </div>
+          <div class="card service">
+            <h3>YouTube Editing</h3>
+            <p>Longer videos shaped for retention with tighter structure, visual support, music, sound design, and clean storytelling.</p>
+          </div>
+          <div class="card service">
+            <h3>Creative Trailers</h3>
+            <p>Launch videos, sizzle reels, and cinematic promos that sell tone, emotion, and momentum.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container about">
+        <div class="card about-panel">
+          <h2>Why Work With Me</h2>
+          <p>
+            I care about more than clean cuts. My editing style is built around emotional impact, clear pacing, and keeping attention from the first second to the last. I aim to make videos feel intentional, not generic.
+          </p>
+          <ul class="list">
+            <li>Strong instinct for story and emotional beats</li>
+            <li>Experience shaping content for engagement</li>
+            <li>Clear communication and reliable collaboration</li>
+            <li>Flexible for creators, brands, and one-off projects</li>
+          </ul>
+        </div>
+
+        <div class="card about-panel">
+          <h2>Simple Process</h2>
+          <p>
+            Keep your workflow visible. It makes you look easier to hire.
+          </p>
+          <ul class="list">
+            <li><strong>1. Discovery:</strong> You tell me the goal, audience, and style.</li>
+            <li><strong>2. Edit:</strong> I build the cut with pacing, story, graphics, and polish.</li>
+            <li><strong>3. Revisions:</strong> We refine until it feels right.</li>
+            <li><strong>4. Delivery:</strong> Final exports sized for your platform.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2>Let’s Make Something Great</h2>
+            <p>Give people one obvious next step. Do not make them hunt for how to contact you.</p>
+          </div>
+        </div>
+
+        <div class="contact-box">
+          <div class="card contact-panel">
+            <h3>Get in Touch</h3>
+            <p>Email: <a href="mailto:yourname@email.com">yourname@email.com</a></p>
+            <p>Instagram: <a href="#">@yourhandle</a></p>
+            <p>YouTube / Vimeo: <a href="#">Your channel or portfolio link</a></p>
+            <p>Response time: Usually within 24–48 hours</p>
+          </div>
+
+          <div class="card contact-panel">
+            <h3>Best Clients for This Site</h3>
+            <p>
+              Coaches, creators, YouTubers, gaming channels, personal brands, small businesses, and teams that need someone who understands both visual polish and storytelling.
+            </p>
+            <a class="btn btn-primary" href="mailto:yourname@email.com?subject=Video%20Editing%20Inquiry">Start a Project</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      © 2026 BryceCreates • Built to showcase editing, storytelling, and client-ready work.
+    </div>
+  </footer>
+</body>
+</html>
