@@ -4,37 +4,46 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bryce | Video Editor & Creator</title>
-  <meta name="description" content="Video editor and content creator portfolio for social content, cinematic edits, trailers, and branded videos." />
+  <meta name="description" content="Video editor and content creator portfolio for short-form, YouTube, cinematic edits, and branded videos." />
   <style>
     :root {
-      --bg: #0b1020;
-      --bg-soft: #121933;
-      --card: rgba(255,255,255,0.06);
+      --bg: #0a0f1f;
+      --bg-soft: #11182d;
+      --card: rgba(255, 255, 255, 0.06);
+      --card-strong: rgba(255, 255, 255, 0.08);
       --text: #f5f7fb;
       --muted: #b8c0d9;
-      --line: rgba(255,255,255,0.12);
+      --line: rgba(255, 255, 255, 0.12);
       --accent: #7c9cff;
       --accent-2: #8ef0d0;
-      --shadow: 0 20px 50px rgba(0,0,0,0.35);
+      --shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
       --radius: 22px;
       --max: 1120px;
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background:
-        radial-gradient(circle at top left, rgba(124,156,255,0.16), transparent 35%),
-        radial-gradient(circle at top right, rgba(142,240,208,0.14), transparent 30%),
+        radial-gradient(circle at top left, rgba(124, 156, 255, 0.16), transparent 35%),
+        radial-gradient(circle at top right, rgba(142, 240, 208, 0.14), transparent 30%),
         linear-gradient(180deg, #0b1020 0%, #090d18 100%);
       color: var(--text);
       line-height: 1.6;
     }
 
-    a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
     .container {
       width: min(var(--max), calc(100% - 2rem));
@@ -46,7 +55,7 @@
       top: 0;
       z-index: 50;
       backdrop-filter: blur(14px);
-      background: rgba(7, 10, 18, 0.65);
+      background: rgba(7, 10, 18, 0.68);
       border-bottom: 1px solid var(--line);
     }
 
@@ -54,8 +63,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0.95rem 0;
       gap: 1rem;
+      padding: 0.95rem 0;
     }
 
     .brand {
@@ -65,13 +74,15 @@
       font-size: 0.95rem;
     }
 
-    .brand span { color: var(--accent-2); }
+    .brand span {
+      color: var(--accent-2);
+    }
 
     .nav-links {
       display: flex;
+      align-items: center;
       gap: 1rem;
       flex-wrap: wrap;
-      align-items: center;
     }
 
     .nav-links a {
@@ -79,7 +90,9 @@
       font-size: 0.95rem;
     }
 
-    .nav-links a:hover { color: var(--text); }
+    .nav-links a:hover {
+      color: var(--text);
+    }
 
     .btn {
       display: inline-flex;
@@ -92,15 +105,19 @@
       transition: transform 0.2s ease, opacity 0.2s ease, border-color 0.2s ease;
     }
 
-    .btn:hover { transform: translateY(-1px); }
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
     .btn-primary {
       background: linear-gradient(135deg, var(--accent), #9d8bff);
       color: white;
       box-shadow: var(--shadow);
     }
+
     .btn-secondary {
       border-color: var(--line);
-      background: rgba(255,255,255,0.03);
+      background: rgba(255, 255, 255, 0.03);
       color: var(--text);
     }
 
@@ -122,7 +139,7 @@
       padding: 0.45rem 0.8rem;
       border-radius: 999px;
       border: 1px solid var(--line);
-      background: rgba(255,255,255,0.04);
+      background: rgba(255, 255, 255, 0.04);
       color: var(--muted);
       font-size: 0.9rem;
       margin-bottom: 1rem;
@@ -160,37 +177,38 @@
       padding: 1rem;
       border: 1px solid var(--line);
       border-radius: 18px;
-      background: rgba(255,255,255,0.04);
+      background: rgba(255, 255, 255, 0.04);
     }
 
     .metric strong {
       display: block;
-      font-size: 1.5rem;
-      margin-bottom: 0.2rem;
+      font-size: 1.15rem;
+      margin-bottom: 0.25rem;
     }
 
     .hero-card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04));
       border: 1px solid var(--line);
       border-radius: var(--radius);
       padding: 1rem;
       box-shadow: var(--shadow);
     }
 
-    .reel {
+    .featured-reel {
       aspect-ratio: 16 / 10;
       border-radius: 18px;
       overflow: hidden;
       background: #060912;
-      border: 1px solid rgba(255,255,255,0.08);
-      display: grid;
-      place-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       color: var(--muted);
       text-align: center;
       padding: 1rem;
     }
 
-    .reel iframe {
+    .featured-reel iframe {
       width: 100%;
       height: 100%;
       border: 0;
@@ -237,23 +255,20 @@
       box-shadow: var(--shadow);
     }
 
-    .thumb {
-      aspect-ratio: 16 / 10;
-      background: linear-gradient(135deg, rgba(124,156,255,0.3), rgba(142,240,208,0.2));
-      display: grid;
-      place-items: center;
-      color: rgba(255,255,255,0.8);
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
+    .video-frame {
+      aspect-ratio: 16 / 9;
+      background: #05070f;
+      overflow: hidden;
+      border-bottom: 1px solid var(--line);
     }
 
-  .thumb iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-}
-    
+    .video-frame iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+
     .card-body {
       padding: 1rem;
     }
@@ -263,8 +278,8 @@
       padding: 0.35rem 0.65rem;
       font-size: 0.78rem;
       border-radius: 999px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.09);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.09);
       color: var(--muted);
       margin-bottom: 0.7rem;
     }
@@ -284,20 +299,16 @@
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
-    .service {
+    .service,
+    .about-panel,
+    .contact-panel {
       padding: 1.25rem;
     }
-
-    .service h3 { margin-top: 0; }
 
     .about {
       display: grid;
       grid-template-columns: 0.9fr 1.1fr;
       gap: 1rem;
-    }
-
-    .about-panel, .contact-panel {
-      padding: 1.25rem;
     }
 
     .list {
@@ -312,8 +323,6 @@
       grid-template-columns: 1fr 1fr;
     }
 
-    .contact-panel p, .about-panel p { color: var(--muted); }
-
     .footer {
       padding: 2.5rem 0 4rem;
       color: var(--muted);
@@ -325,10 +334,7 @@
       .about,
       .work-grid,
       .services,
-      .contact-box {
-        grid-template-columns: 1fr;
-      }
-
+      .contact-box,
       .metrics {
         grid-template-columns: 1fr;
       }
@@ -372,24 +378,24 @@
           </div>
           <div class="metric">
             <strong>Long Form</strong>
-            <span>YouTube edits, story-driven videos</span>
+            <span>YouTube edits and story-driven videos</span>
           </div>
           <div class="metric">
             <strong>Creative Focus</strong>
-            <span>Pacing, emotion, clean visual polish</span>
+            <span>Pacing, emotion, and clean visual polish</span>
           </div>
         </div>
       </div>
 
       <div class="hero-card">
-        <div class="reel">
-          <!-- Replace this block with your showreel embed -->
-          <!-- Example YouTube embed: <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe> -->
-          <div>
-            <strong style="display:block; font-size:1.2rem; color:#fff; margin-bottom:0.5rem;">Featured Reel</strong>
-            Add your best 30–60 second reel here.<br />
-            Lead with fast cuts, your strongest work first, and on-screen labels for the kind of clients you want.
-          </div>
+        <div class="featured-reel">
+          <!-- Replace YOUR_FEATURED_VIDEO_ID with your real YouTube video ID -->
+          <iframe
+            src="https://www.youtube.com/embed/YOUR_FEATURED_VIDEO_ID"
+            title="Featured reel"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
         </div>
       </div>
     </div>
@@ -401,20 +407,22 @@
         <div class="section-header">
           <div>
             <h2>Selected Work</h2>
-            <p></p>
+            <p>Each project block below is now built for a YouTube embed. Just replace the video IDs.</p>
           </div>
         </div>
 
         <div class="grid work-grid">
           <article class="card">
-            <div class="thumb">
+            <div class="video-frame">
+              <!-- Replace PROJECT_ONE_VIDEO_ID -->
               <iframe
-                src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
-                title="YouTube video player"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                src="https://www.youtube.com/embed/PROJECT_ONE_VIDEO_ID"
+                title="Project 1"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowfullscreen>
               </iframe>
             </div>
+            <div class="card-body">
               <div class="tag">Short Form Editing</div>
               <h3>High-Retention Social Edit</h3>
               <p>Hook-first pacing, captions, music syncing, motion emphasis, and fast visual flow for vertical platforms.</p>
@@ -422,7 +430,15 @@
           </article>
 
           <article class="card">
-            <div class="thumb">Project 02</div>
+            <div class="video-frame">
+              <!-- Replace PROJECT_TWO_VIDEO_ID -->
+              <iframe
+                src="https://www.youtube.com/embed/PROJECT_TWO_VIDEO_ID"
+                title="Project 2"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen>
+              </iframe>
+            </div>
             <div class="card-body">
               <div class="tag">YouTube / Narrative</div>
               <h3>Story-Driven Long-Form Video</h3>
@@ -431,7 +447,15 @@
           </article>
 
           <article class="card">
-            <div class="thumb">Project 03</div>
+            <div class="video-frame">
+              <!-- Replace PROJECT_THREE_VIDEO_ID -->
+              <iframe
+                src="https://www.youtube.com/embed/PROJECT_THREE_VIDEO_ID"
+                title="Project 3"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen>
+              </iframe>
+            </div>
             <div class="card-body">
               <div class="tag">Brand / Promo</div>
               <h3>Promotional Trailer</h3>
@@ -447,7 +471,7 @@
         <div class="section-header">
           <div>
             <h2>What I Can Help With</h2>
-            <p></p>
+            <p>Keep this tight and clear so a client understands your value fast.</p>
           </div>
         </div>
 
@@ -485,9 +509,7 @@
 
         <div class="card about-panel">
           <h2>Simple Process</h2>
-          <p>
-  
-          </p>
+          <p>Make the hiring process look easy.</p>
           <ul class="list">
             <li><strong>1. Discovery:</strong> You tell me the goal, audience, and style.</li>
             <li><strong>2. Edit:</strong> I build the cut with pacing, story, graphics, and polish.</li>
@@ -503,7 +525,7 @@
         <div class="section-header">
           <div>
             <h2>Let’s Make Something Great</h2>
-            <p>Contact me to book your consultation through one of the methods below.</p>
+            <p>Give potential clients one obvious next step.</p>
           </div>
         </div>
 
@@ -517,7 +539,7 @@
           </div>
 
           <div class="card contact-panel">
-            <h3>Best Clients for This Site</h3>
+            <h3>Best Fit Clients</h3>
             <p>
               Coaches, creators, YouTubers, gaming channels, personal brands, small businesses, and teams that need someone who understands both visual polish and storytelling.
             </p>
@@ -526,6 +548,26 @@
         </div>
       </div>
     </section>
+
+    <section id="testimonial">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2>What Clients Say</h2>
+            <p>One strong testimonial builds more trust than ten claims.</p>
+          </div>
+        </div>
+
+        <div class="card" style="padding:1.5rem; max-width:700px; margin:0 auto; text-align:center;">
+          <p style="font-size:1.05rem; line-height:1.7; margin-bottom:1rem;">
+            “Bryce completely transformed our footage into something that actually tells a story. The pacing, the edits, the emotional beats—it felt professional in a way we couldn’t have done ourselves. We saw higher engagement immediately.”
+          </p>
+          <strong>— Client Name</strong>
+          <div style="color:var(--muted); font-size:0.9rem;">Company / Creator</div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <footer class="footer">
