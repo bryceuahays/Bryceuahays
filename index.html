@@ -132,19 +132,6 @@
       align-items: center;
     }
 
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.45rem 0.8rem;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.04);
-      color: var(--muted);
-      font-size: 0.9rem;
-      margin-bottom: 1rem;
-    }
-
     h1 {
       font-size: clamp(2.4rem, 5vw, 4.8rem);
       line-height: 1.05;
@@ -323,6 +310,70 @@
       grid-template-columns: 1fr 1fr;
     }
 
+    .testimonial-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .testimonial-card {
+      padding: 1.75rem;
+      max-width: 760px;
+      width: 100%;
+      text-align: center;
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .testimonial-card.fade-out {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    .testimonial-text {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    .testimonial-name {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .testimonial-company {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .testimonial-arrow {
+      width: 48px;
+      height: 48px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text);
+      font-size: 1.4rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s ease, background 0.2s ease, opacity 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .testimonial-arrow:hover {
+      transform: translateY(-1px);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .testimonial-arrow:active {
+      transform: translateY(0);
+    }
+
     .footer {
       padding: 2.5rem 0 4rem;
       color: var(--muted);
@@ -344,6 +395,22 @@
         flex-direction: column;
       }
     }
+
+    @media (max-width: 768px) {
+      .testimonial-wrapper {
+        gap: 0.6rem;
+      }
+
+      .testimonial-arrow {
+        width: 42px;
+        height: 42px;
+        font-size: 1.2rem;
+      }
+
+      .testimonial-card {
+        padding: 1.25rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -362,7 +429,6 @@
   <header class="hero" id="top">
     <div class="container hero-grid">
       <div>
-      
         <h1>Helping brands and creators turn raw footage into videos people actually remember.</h1>
         <p>
           I edit short-form content, cinematic trailers, and YouTube videos with a focus on pacing, emotion, and retention. If you need someone who can shape a strong story instead of just stacking clips, you're in the right place.
@@ -389,7 +455,6 @@
 
       <div class="hero-card">
         <div class="featured-reel">
-          <!-- Replace YOUR_FEATURED_VIDEO_ID with your real YouTube video ID -->
           <iframe
             src="https://www.youtube.com/embed/jki7Iy1gVds"
             title="Featured reel"
@@ -414,7 +479,6 @@
         <div class="grid work-grid">
           <article class="card">
             <div class="video-frame">
-              <!-- Replace PROJECT_ONE_VIDEO_ID -->
               <iframe
                 src="https://www.youtube.com/embed/k43KfK_l2Kw"
                 title="Project 1"
@@ -431,7 +495,6 @@
 
           <article class="card">
             <div class="video-frame">
-              <!-- Replace PROJECT_TWO_VIDEO_ID -->
               <iframe
                 src="https://www.youtube.com/embed/suQdft0Q77g"
                 title="Project 2"
@@ -448,7 +511,6 @@
 
           <article class="card">
             <div class="video-frame">
-              <!-- Replace PROJECT_THREE_VIDEO_ID -->
               <iframe
                 src="https://www.youtube.com/embed/D7p7hpBU-JY"
                 title="Project 3"
@@ -532,10 +594,9 @@
         <div class="contact-box">
           <div class="card contact-panel">
             <h3>Get in Touch</h3>
-            <p>Email: <a href="mailto:yourname@email.com">bryceuahays@gmail.com</a></p>
-        
+            <p>Email: <a href="mailto:bryceuahays@gmail.com">bryceuahays@gmail.com</a></p>
             <p>
-              YouTube: 
+              YouTube:
               <a href="https://www.youtube.com/@PwnsU2Fast" target="_blank" rel="noopener noreferrer" style="color: #7c9cff; text-decoration: underline; font-weight: 700;">
                 PwnsU2Fast
               </a>
@@ -548,7 +609,7 @@
             <p>
               Coaches, creators, YouTubers, personal brands, businesses, and teams that need someone who understands both visual polish and storytelling.
             </p>
-            <a class="btn btn-primary" href="mailto:yourname@email.com?subject=Video%20Editing%20Inquiry">Start a Project</a>
+            <a class="btn btn-primary" href="mailto:bryceuahays@gmail.com?subject=Video%20Editing%20Inquiry">Start a Project</a>
           </div>
         </div>
       </div>
@@ -563,12 +624,22 @@
           </div>
         </div>
 
-        <div class="card" style="padding:1.5rem; max-width:700px; margin:0 auto; text-align:center;">
-          <p style="font-size:1.05rem; line-height:1.7; margin-bottom:1rem;">
-            “Bryce is a talented editor and storyteller, and someone I would gladly work with again. I highly recommend him to anyone looking for someone who can combine creativity, professionalism, and a strong sense of story.”
-          </p>
-          <strong>— Timothy Kavmark</strong>
-          <div style="color:var(--muted); font-size:0.9rem;">Live Your Truth LLC</div>
+        <div class="testimonial-wrapper">
+          <button class="testimonial-arrow" id="prev-testimonial" aria-label="Previous testimonial">
+            &#10094;
+          </button>
+
+          <div class="card testimonial-card" id="testimonial-card">
+            <p class="testimonial-text" id="testimonial-text">
+              “Bryce is a talented editor and storyteller, and someone I would gladly work with again. I highly recommend him to anyone looking for someone who can combine creativity, professionalism, and a strong sense of story.”
+            </p>
+            <strong class="testimonial-name" id="testimonial-name">— Timothy Kavmark</strong>
+            <div class="testimonial-company" id="testimonial-company">Live Your Truth LLC</div>
+          </div>
+
+          <button class="testimonial-arrow" id="next-testimonial" aria-label="Next testimonial">
+            &#10095;
+          </button>
         </div>
       </div>
     </section>
@@ -580,5 +651,75 @@
       © 2026 Brycinema • Built to showcase editing, storytelling, and client-ready work.
     </div>
   </footer>
+
+  <script>
+    const testimonials = [
+      {
+        text: "“Bryce is a talented editor and storyteller, and someone I would gladly work with again. I highly recommend him to anyone looking for someone who can combine creativity, professionalism, and a strong sense of story.”",
+        name: "— Timothy Kavmark",
+        company: "Live Your Truth LLC"
+      },
+      {
+        text: "“Bryce did such a good job, we were so touched by the time and effort he put into immortalizing our big day.”",
+        name: "— Tawni Waldram",
+        company: "Family Friend"
+      }
+    ];
+
+    let currentTestimonial = 0;
+    let testimonialInterval;
+
+    const testimonialCard = document.getElementById("testimonial-card");
+    const testimonialText = document.getElementById("testimonial-text");
+    const testimonialName = document.getElementById("testimonial-name");
+    const testimonialCompany = document.getElementById("testimonial-company");
+    const prevButton = document.getElementById("prev-testimonial");
+    const nextButton = document.getElementById("next-testimonial");
+
+    function updateTestimonial(index) {
+      testimonialText.textContent = testimonials[index].text;
+      testimonialName.textContent = testimonials[index].name;
+      testimonialCompany.textContent = testimonials[index].company;
+    }
+
+    function changeTestimonial(newIndex) {
+      testimonialCard.classList.add("fade-out");
+
+      setTimeout(() => {
+        currentTestimonial = (newIndex + testimonials.length) % testimonials.length;
+        updateTestimonial(currentTestimonial);
+        testimonialCard.classList.remove("fade-out");
+      }, 600);
+    }
+
+    function nextTestimonial() {
+      changeTestimonial(currentTestimonial + 1);
+    }
+
+    function prevTestimonial() {
+      changeTestimonial(currentTestimonial - 1);
+    }
+
+    function startTestimonialRotation() {
+      testimonialInterval = setInterval(nextTestimonial, 5000);
+    }
+
+    function resetTestimonialRotation() {
+      clearInterval(testimonialInterval);
+      startTestimonialRotation();
+    }
+
+    nextButton.addEventListener("click", () => {
+      nextTestimonial();
+      resetTestimonialRotation();
+    });
+
+    prevButton.addEventListener("click", () => {
+      prevTestimonial();
+      resetTestimonialRotation();
+    });
+
+    startTestimonialRotation();
+  </script>
 </body>
 </html>
