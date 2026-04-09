@@ -181,6 +181,30 @@
       box-shadow: var(--shadow);
     }
 
+    .featured-reel-wrapper {
+      position: relative;
+    }
+
+    .start-here-banner {
+      position: absolute;
+      top: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      padding: 0.7rem 1.2rem;
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(124, 156, 255, 0.95), rgba(157, 139, 255, 0.95));
+      color: #ffffff;
+      font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
     .featured-reel {
       aspect-ratio: 16 / 10;
       border-radius: 18px;
@@ -410,6 +434,12 @@
       .testimonial-card {
         padding: 1.25rem;
       }
+
+      .start-here-banner {
+        top: 10px;
+        font-size: 0.85rem;
+        padding: 0.6rem 1rem;
+      }
     }
   </style>
 </head>
@@ -454,13 +484,16 @@
       </div>
 
       <div class="hero-card">
-        <div class="featured-reel">
-          <iframe
-            src="https://www.youtube.com/embed/jki7Iy1gVds"
-            title="Featured reel"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen>
-          </iframe>
+        <div class="featured-reel-wrapper">
+          <div class="start-here-banner">See What I Can Do</div>
+          <div class="featured-reel">
+            <iframe
+              src="https://www.youtube.com/embed/jki7Iy1gVds"
+              title="Featured reel"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen>
+            </iframe>
+          </div>
         </div>
       </div>
     </div>
@@ -661,7 +694,7 @@
       },
       {
         text: "“Bryce did such a good job, we were so touched by the time and effort he put into immortalizing our big day.”",
-        name: "— Tawni Waldram",
+        name: "— Tawni Dunn",
         company: "Family Friend"
       }
     ];
