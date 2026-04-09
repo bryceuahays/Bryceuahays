@@ -182,15 +182,16 @@
     }
 
     .featured-reel-wrapper {
-      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.9rem;
     }
 
     .start-here-banner {
-      position: absolute;
-      top: 14px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       padding: 0.7rem 1.2rem;
       border-radius: 999px;
       background: linear-gradient(135deg, rgba(124, 156, 255, 0.95), rgba(157, 139, 255, 0.95));
@@ -199,13 +200,31 @@
       font-weight: 800;
       letter-spacing: 0.04em;
       text-transform: uppercase;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.35),
+        0 0 0 rgba(124, 156, 255, 0.35);
       border: 1px solid rgba(255, 255, 255, 0.16);
-      pointer-events: none;
       white-space: nowrap;
+      animation: softPulseGlow 3.2s ease-in-out infinite;
+    }
+
+    @keyframes softPulseGlow {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow:
+          0 10px 30px rgba(0, 0, 0, 0.35),
+          0 0 0 rgba(124, 156, 255, 0.18);
+      }
+      50% {
+        transform: scale(1.03);
+        box-shadow:
+          0 12px 34px rgba(0, 0, 0, 0.38),
+          0 0 24px rgba(124, 156, 255, 0.28);
+      }
     }
 
     .featured-reel {
+      width: 100%;
       aspect-ratio: 16 / 10;
       border-radius: 18px;
       overflow: hidden;
@@ -436,7 +455,6 @@
       }
 
       .start-here-banner {
-        top: 10px;
         font-size: 0.85rem;
         padding: 0.6rem 1rem;
       }
