@@ -2,120 +2,183 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Portfolio | Brycinema</title>
 
 <style>
 :root {
   --bg: #0a0f1f;
-  --card: rgba(255,255,255,0.06);
+  --bg-soft: #11182d;
+  --card: rgba(255, 255, 255, 0.06);
   --text: #f5f7fb;
   --muted: #b8c0d9;
+  --line: rgba(255, 255, 255, 0.12);
   --accent: #7c9cff;
-  --line: rgba(255,255,255,0.12);
+  --accent-2: #8ef0d0;
+  --shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
 }
 
+* { box-sizing: border-box; }
+
 body {
-  margin:0;
+  margin: 0;
   font-family: Inter, sans-serif;
-  background:#090d18;
-  color:var(--text);
+
+  /* MATCHED BACKGROUND */
+  background:
+    radial-gradient(circle at top left, rgba(124, 156, 255, 0.16), transparent 35%),
+    radial-gradient(circle at top right, rgba(142, 240, 208, 0.14), transparent 30%),
+    linear-gradient(180deg, #0b1020 0%, #090d18 100%);
+
+  color: var(--text);
 }
 
 .container {
   width: min(1120px, calc(100% - 2rem));
-  margin:auto;
+  margin: 0 auto;
 }
 
+/* NAV (MATCHES HOME PAGE) */
 .nav {
-  padding:1rem 0;
-  border-bottom:1px solid var(--line);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(14px);
+  background: rgba(7, 10, 18, 0.68);
+  border-bottom: 1px solid var(--line);
 }
 
-.nav a {
-  margin-right:1rem;
-  color:var(--muted);
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.95rem 0;
 }
 
+.brand {
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 0.95rem;
+}
+
+.brand span {
+  color: var(--accent-2);
+}
+
+.nav-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-links a {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.nav-links a:hover {
+  color: var(--text);
+}
+
+/* HEADER */
 h1 {
-  margin:2rem 0;
+  margin: 2rem 0;
+  font-size: 2.2rem;
 }
 
-/* FILTER BUTTONS */
+/* FILTERS */
 .filters {
-  display:flex;
-  flex-wrap:wrap;
-  gap:0.5rem;
-  margin-bottom:2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 2rem;
 }
 
 .filter-btn {
-  padding:0.5rem 1rem;
-  border-radius:999px;
-  border:1px solid var(--line);
-  cursor:pointer;
-  background:rgba(255,255,255,0.05);
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  cursor: pointer;
+  background: rgba(255,255,255,0.05);
+
+  /* FIXED TEXT VISIBILITY */
+  color: white;
+  font-weight: 600;
 }
 
 .filter-btn.active {
-  background:var(--accent);
-  color:white;
+  background: var(--accent);
+  color: white;
 }
 
 /* GRID */
 .grid {
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:1rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
 }
 
 .card {
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:16px;
-  overflow:hidden;
-  transition:0.3s;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  overflow: hidden;
+  transition: 0.3s ease;
+  box-shadow: var(--shadow);
 }
 
+/* DIM EFFECT */
 .card.dimmed {
-  opacity:0.25;
-  filter:grayscale(60%);
+  opacity: 0.25;
+  filter: grayscale(60%);
+  pointer-events: none;
 }
 
 .video-frame {
-  aspect-ratio:16/9;
+  aspect-ratio: 16 / 9;
+  background: #05070f;
 }
 
 .video-frame iframe {
-  width:100%;
-  height:100%;
-  border:0;
+  width: 100%;
+  height: 100%;
+  border: 0;
 }
 
 .card-body {
-  padding:1rem;
+  padding: 1rem;
 }
 
 .tag {
-  font-size:0.8rem;
-  color:var(--muted);
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
 }
 
 /* MOBILE */
-@media(max-width:900px){
-  .grid { grid-template-columns:1fr; }
+@media(max-width: 900px){
+  .grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
-  <div class="nav">
-    <a href="index.html">Home</a>
-    <a href="portfolio.html">Portfolio</a>
+<!-- NAVBAR (MATCHED) -->
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="brand">Bry<span>Cinema</span></a>
+    <div class="nav-links">
+      <a href="index.html#work">Work</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
   </div>
+</nav>
 
+<div class="container">
   <h1>All Work</h1>
 
   <!-- FILTERS -->
@@ -129,10 +192,10 @@ h1 {
     <button class="filter-btn" data-filter="vlog">Vlog</button>
   </div>
 
-  <!-- VIDEO GRID -->
-  <div class="grid" id="videoGrid">
+  <!-- GRID -->
+  <div class="grid">
 
-    <!-- VIDEO SLOT TEMPLATE -->
+    <!-- VIDEO -->
     <div class="card" data-tags="youtube essay">
       <div class="video-frame">
         <iframe src="https://www.youtube.com/embed/jki7Iy1gVds"></iframe>
