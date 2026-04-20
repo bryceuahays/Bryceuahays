@@ -371,6 +371,46 @@
       gap: 1rem;
     }
 
+    .about-intro {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .headshot-wrap {
+      position: relative;
+      flex-shrink: 0;
+      width: 92px;
+      height: 92px;
+      border-radius: 50%;
+      padding: 3px;
+      background: linear-gradient(135deg, rgba(124, 156, 255, 0.95), rgba(142, 240, 208, 0.85));
+      box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.35),
+        0 0 24px rgba(124, 156, 255, 0.18);
+    }
+
+    .headshot {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 2px solid rgba(10, 15, 31, 0.9);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .about-intro-text h2 {
+      margin: 0 0 0.2rem;
+    }
+
+    .about-intro-text p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
     .list {
       margin: 1rem 0 0;
       padding-left: 1.1rem;
@@ -487,6 +527,15 @@
       .start-here-banner {
         font-size: 0.85rem;
         padding: 0.6rem 1rem;
+      }
+
+      .about-intro {
+        align-items: flex-start;
+      }
+
+      .headshot-wrap {
+        width: 78px;
+        height: 78px;
       }
     }
   </style>
@@ -638,7 +687,15 @@
     <section id="about">
       <div class="container about">
         <div class="card about-panel">
-          <h2>Why Work With Me</h2>
+          <div class="about-intro">
+            <div class="headshot-wrap">
+              <img src="images/headshot.jpg" alt="Bryce headshot" class="headshot">
+            </div>
+            <div class="about-intro-text">
+              <h2>Why Work With Me</h2>
+              <p>A story-first editor focused on emotion, pacing, and client trust.</p>
+            </div>
+          </div>
           <p>
             I care about more than clean cuts. My editing style is built around emotional impact, clear pacing, and keeping attention from the first second to the last. I aim to make videos feel intentional, not generic.
           </p>
