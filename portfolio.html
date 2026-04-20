@@ -24,7 +24,6 @@ body {
   margin: 0;
   font-family: Inter, sans-serif;
 
-  /* MATCHED BACKGROUND */
   background:
     radial-gradient(circle at top left, rgba(124, 156, 255, 0.16), transparent 35%),
     radial-gradient(circle at top right, rgba(142, 240, 208, 0.14), transparent 30%),
@@ -33,12 +32,33 @@ body {
   color: var(--text);
 }
 
+/* GLOBAL LINK FIX */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:visited {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* BRAND FIX (THIS IS THE IMPORTANT PART) */
+.brand,
+.brand:visited,
+.brand:active,
+.brand:hover {
+  color: var(--text);
+  text-decoration: none;
+}
+
+/* LAYOUT */
 .container {
   width: min(1120px, calc(100% - 2rem));
   margin: 0 auto;
 }
 
-/* NAV (MATCHES HOME PAGE) */
+/* NAV */
 .nav {
   position: sticky;
   top: 0;
@@ -100,15 +120,12 @@ h1 {
   border: 1px solid var(--line);
   cursor: pointer;
   background: rgba(255,255,255,0.05);
-
-  /* FIXED TEXT VISIBILITY */
   color: white;
   font-weight: 600;
 }
 
 .filter-btn.active {
   background: var(--accent);
-  color: white;
 }
 
 /* GRID */
@@ -127,7 +144,6 @@ h1 {
   box-shadow: var(--shadow);
 }
 
-/* DIM EFFECT */
 .card.dimmed {
   opacity: 0.25;
   filter: grayscale(60%);
@@ -164,7 +180,6 @@ h1 {
 
 <body>
 
-<!-- NAVBAR (MATCHED) -->
 <nav class="nav">
   <div class="container nav-inner">
     <a href="index.html" class="brand">Bry<span>Cinema</span></a>
@@ -181,7 +196,6 @@ h1 {
 <div class="container">
   <h1>All Work</h1>
 
-  <!-- FILTERS -->
   <div class="filters">
     <button class="filter-btn active" data-filter="all">All</button>
     <button class="filter-btn" data-filter="youtube">Youtube</button>
@@ -192,10 +206,8 @@ h1 {
     <button class="filter-btn" data-filter="vlog">Vlog</button>
   </div>
 
-  <!-- GRID -->
   <div class="grid">
 
-    <!-- VIDEO -->
     <div class="card" data-tags="youtube essay">
       <div class="video-frame">
         <iframe src="https://www.youtube.com/embed/jki7Iy1gVds"></iframe>
