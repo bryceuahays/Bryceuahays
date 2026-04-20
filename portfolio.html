@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Portfolio | Brycinema</title>
+
+<style>
+:root {
+  --bg: #0a0f1f;
+  --card: rgba(255,255,255,0.06);
+  --text: #f5f7fb;
+  --muted: #b8c0d9;
+  --accent: #7c9cff;
+  --line: rgba(255,255,255,0.12);
+}
+
+body {
+  margin:0;
+  font-family: Inter, sans-serif;
+  background:#090d18;
+  color:var(--text);
+}
+
+.container {
+  width: min(1120px, calc(100% - 2rem));
+  margin:auto;
+}
+
+.nav {
+  padding:1rem 0;
+  border-bottom:1px solid var(--line);
+}
+
+.nav a {
+  margin-right:1rem;
+  color:var(--muted);
+}
+
+h1 {
+  margin:2rem 0;
+}
+
+/* FILTER BUTTONS */
+.filters {
+  display:flex;
+  flex-wrap:wrap;
+  gap:0.5rem;
+  margin-bottom:2rem;
+}
+
+.filter-btn {
+  padding:0.5rem 1rem;
+  border-radius:999px;
+  border:1px solid var(--line);
+  cursor:pointer;
+  background:rgba(255,255,255,0.05);
+}
+
+.filter-btn.active {
+  background:var(--accent);
+  color:white;
+}
+
+/* GRID */
+.grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1rem;
+}
+
+.card {
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:16px;
+  overflow:hidden;
+  transition:0.3s;
+}
+
+.card.dimmed {
+  opacity:0.25;
+  filter:grayscale(60%);
+}
+
+.video-frame {
+  aspect-ratio:16/9;
+}
+
+.video-frame iframe {
+  width:100%;
+  height:100%;
+  border:0;
+}
+
+.card-body {
+  padding:1rem;
+}
+
+.tag {
+  font-size:0.8rem;
+  color:var(--muted);
+}
+
+/* MOBILE */
+@media(max-width:900px){
+  .grid { grid-template-columns:1fr; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <div class="nav">
+    <a href="index.html">Home</a>
+    <a href="portfolio.html">Portfolio</a>
+  </div>
+
+  <h1>All Work</h1>
+
+  <!-- FILTERS -->
+  <div class="filters">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="youtube">Youtube</button>
+    <button class="filter-btn" data-filter="corporate">Corporate</button>
+    <button class="filter-btn" data-filter="essay">Video Essay</button>
+    <button class="filter-btn" data-filter="highlight">Highlights</button>
+    <button class="filter-btn" data-filter="howto">How To</button>
+    <button class="filter-btn" data-filter="vlog">Vlog</button>
+  </div>
+
+  <!-- VIDEO GRID -->
+  <div class="grid" id="videoGrid">
+
+    <!-- VIDEO SLOT TEMPLATE -->
+    <div class="card" data-tags="youtube essay">
+      <div class="video-frame">
+        <iframe src="https://www.youtube.com/embed/jki7Iy1gVds"></iframe>
+      </div>
+      <div class="card-body">
+        <div class="tag">YouTube • Video Essay</div>
+        <h3>Project Title</h3>
+      </div>
+    </div>
+
+    <div class="card" data-tags="corporate">
+      <div class="video-frame">
+        <iframe src="https://www.youtube.com/embed/k43KfK_l2Kw"></iframe>
+      </div>
+      <div class="card-body">
+        <div class="tag">Corporate</div>
+        <h3>Brand Project</h3>
+      </div>
+    </div>
+
+    <div class="card" data-tags="highlight youtube">
+      <div class="video-frame">
+        <iframe src="https://www.youtube.com/embed/D7p7hpBU-JY"></iframe>
+      </div>
+      <div class="card-body">
+        <div class="tag">Highlight</div>
+        <h3>Highlight Edit</h3>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const buttons = document.querySelectorAll(".filter-btn");
+const cards = document.querySelectorAll(".card");
+
+buttons.forEach(btn => {
+  btn.addEventListener("click", () => {
+
+    document.querySelector(".active").classList.remove("active");
+    btn.classList.add("active");
+
+    const filter = btn.dataset.filter;
+
+    cards.forEach(card => {
+      const tags = card.dataset.tags;
+
+      if(filter === "all" || tags.includes(filter)){
+        card.classList.remove("dimmed");
+      } else {
+        card.classList.add("dimmed");
+      }
+    });
+  });
+});
+</script>
+
+</body>
+</html>
