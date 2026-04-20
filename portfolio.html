@@ -18,41 +18,39 @@
   --shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+}
 
 body {
   margin: 0;
-  font-family: Inter, sans-serif;
-
-  background:
+  min-height: 100vh;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--text);
+  line-height: 1.6;
+  background-color: #090d18;
+  background-image:
     radial-gradient(circle at top left, rgba(124, 156, 255, 0.16), transparent 35%),
     radial-gradient(circle at top right, rgba(142, 240, 208, 0.14), transparent 30%),
     linear-gradient(180deg, #0b1020 0%, #090d18 100%);
-
-  color: var(--text);
+  background-repeat: no-repeat;
+  background-size: 100% 100%, 100% 100%, 100% 100%;
+  background-attachment: fixed;
 }
 
-/* GLOBAL LINK FIX */
-a {
+/* GLOBAL LINKS */
+a,
+a:visited,
+a:hover,
+a:active {
   color: inherit;
   text-decoration: none;
 }
 
-a:visited {
-  color: inherit;
-  text-decoration: none;
-}
-
-/* BRAND FIX (THIS IS THE IMPORTANT PART) */
-.brand,
-.brand:visited,
-.brand:active,
-.brand:hover {
-  color: var(--text);
-  text-decoration: none;
-}
-
-/* LAYOUT */
 .container {
   width: min(1120px, calc(100% - 2rem));
   margin: 0 auto;
@@ -72,6 +70,7 @@ a:visited {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 1rem;
   padding: 0.95rem 0;
 }
 
@@ -80,6 +79,15 @@ a:visited {
   letter-spacing: 0.04em;
   text-transform: uppercase;
   font-size: 0.95rem;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.brand:visited,
+.brand:hover,
+.brand:active {
+  color: var(--text);
+  text-decoration: none;
 }
 
 .brand span {
@@ -88,22 +96,47 @@ a:visited {
 
 .nav-links {
   display: flex;
+  align-items: center;
   gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .nav-links a {
   color: var(--muted);
   font-size: 0.95rem;
+  position: relative;
+  transition: color 0.2s ease;
 }
 
 .nav-links a:hover {
   color: var(--text);
 }
 
+.nav-links a.active {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.nav-links a.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.35rem;
+  width: 100%;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 999px;
+}
+
+.page-wrap {
+  padding: 2rem 0 4rem;
+}
+
 /* HEADER */
 h1 {
-  margin: 2rem 0;
-  font-size: 2.2rem;
+  margin: 0 0 1.5rem;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  letter-spacing: -0.03em;
 }
 
 /* FILTERS */
@@ -119,19 +152,27 @@ h1 {
   border-radius: 999px;
   border: 1px solid var(--line);
   cursor: pointer;
-  background: rgba(255,255,255,0.05);
-  color: white;
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
   font-weight: 600;
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.filter-btn:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .filter-btn.active {
   background: var(--accent);
+  color: #ffffff;
+  border-color: transparent;
 }
 
 /* GRID */
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
 }
 
@@ -140,8 +181,12 @@ h1 {
   border: 1px solid var(--line);
   border-radius: 18px;
   overflow: hidden;
-  transition: 0.3s ease;
+  transition: opacity 0.25s ease, filter 0.25s ease, transform 0.25s ease;
   box-shadow: var(--shadow);
+}
+
+.card:hover {
+  transform: translateY(-2px);
 }
 
 .card.dimmed {
@@ -159,6 +204,7 @@ h1 {
   width: 100%;
   height: 100%;
   border: 0;
+  display: block;
 }
 
 .card-body {
@@ -171,9 +217,21 @@ h1 {
   margin-bottom: 0.5rem;
 }
 
+.card h3 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
 /* MOBILE */
-@media(max-width: 900px){
-  .grid { grid-template-columns: 1fr; }
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 </style>
 </head>
@@ -185,6 +243,8 @@ h1 {
     <a href="index.html" class="brand">Bry<span>Cinema</span></a>
     <div class="nav-links">
       <a href="index.html">Home</a>
+      <a href="index.html#work">Work</a>
+      <a href="portfolio.html">Portfolio</a>
       <a href="index.html#services">Services</a>
       <a href="index.html#about">About</a>
       <a href="index.html#contact">Contact</a>
@@ -192,7 +252,7 @@ h1 {
   </div>
 </nav>
 
-<div class="container">
+<div class="container page-wrap">
   <h1>All Work</h1>
 
   <div class="filters">
@@ -206,10 +266,14 @@ h1 {
   </div>
 
   <div class="grid">
-
     <div class="card" data-tags="youtube essay">
       <div class="video-frame">
-        <iframe src="https://www.youtube.com/embed/jki7Iy1gVds"></iframe>
+        <iframe
+          src="https://www.youtube.com/embed/jki7Iy1gVds"
+          title="Project 1"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
       </div>
       <div class="card-body">
         <div class="tag">YouTube • Video Essay</div>
@@ -219,7 +283,12 @@ h1 {
 
     <div class="card" data-tags="corporate">
       <div class="video-frame">
-        <iframe src="https://www.youtube.com/embed/k43KfK_l2Kw"></iframe>
+        <iframe
+          src="https://www.youtube.com/embed/k43KfK_l2Kw"
+          title="Project 2"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
       </div>
       <div class="card-body">
         <div class="tag">Corporate</div>
@@ -229,39 +298,60 @@ h1 {
 
     <div class="card" data-tags="highlight youtube">
       <div class="video-frame">
-        <iframe src="https://www.youtube.com/embed/D7p7hpBU-JY"></iframe>
+        <iframe
+          src="https://www.youtube.com/embed/D7p7hpBU-JY"
+          title="Project 3"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
       </div>
       <div class="card-body">
         <div class="tag">Highlight</div>
         <h3>Highlight Edit</h3>
       </div>
     </div>
-
   </div>
 </div>
 
 <script>
-const buttons = document.querySelectorAll(".filter-btn");
+const filterButtons = document.querySelectorAll(".filter-btn");
 const cards = document.querySelectorAll(".card");
 
-buttons.forEach(btn => {
+filterButtons.forEach((btn) => {
   btn.addEventListener("click", () => {
-
-    document.querySelector(".active").classList.remove("active");
+    document.querySelector(".filter-btn.active")?.classList.remove("active");
     btn.classList.add("active");
 
     const filter = btn.dataset.filter;
 
-    cards.forEach(card => {
-      const tags = card.dataset.tags;
+    cards.forEach((card) => {
+      const tags = card.dataset.tags || "";
 
-      if(filter === "all" || tags.includes(filter)){
+      if (filter === "all" || tags.includes(filter)) {
         card.classList.remove("dimmed");
       } else {
         card.classList.add("dimmed");
       }
     });
   });
+});
+
+/* NAV PAGE HIGHLIGHT */
+const currentPage = window.location.pathname.split("/").pop() || "index.html";
+const navLinks = document.querySelectorAll(".nav-links a");
+
+navLinks.forEach((link) => {
+  const href = link.getAttribute("href");
+
+  if (!href) return;
+
+  if (href === "portfolio.html" && currentPage === "portfolio.html") {
+    link.classList.add("active");
+  }
+
+  if (href === "index.html" && currentPage === "index.html") {
+    link.classList.add("active");
+  }
 });
 </script>
 
