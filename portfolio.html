@@ -232,6 +232,66 @@ h1 {
     flex-direction: column;
     align-items: flex-start;
   }
+/* TESTIMONIALS */
+.testimonial-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.testimonial-card {
+  padding: 1.75rem;
+  max-width: 760px;
+  width: 100%;
+  text-align: center;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.testimonial-card.fade-out {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.testimonial-text {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+.testimonial-name {
+  display: block;
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.testimonial-company {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.testimonial-arrow {
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+  font-size: 1.4rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.testimonial-arrow:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.1);
+}
 }
 </style>
 </head>
@@ -506,7 +566,34 @@ h1 {
    </div>
   </div>
 </div>
+<section id="testimonial">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <h2>What Clients Say</h2>
+        <p></p>
+      </div>
+    </div>
 
+    <div class="testimonial-wrapper">
+      <button class="testimonial-arrow" id="prev-testimonial" aria-label="Previous testimonial">
+        &#10094;
+      </button>
+
+      <div class="card testimonial-card" id="testimonial-card">
+        <p class="testimonial-text" id="testimonial-text">
+          “Bryce is a talented editor and storyteller, and someone I would gladly work with again. I highly recommend him to anyone looking for someone who can combine creativity, professionalism, and a strong sense of story.”
+        </p>
+        <strong class="testimonial-name" id="testimonial-name">— Timothy Kavmark</strong>
+        <div class="testimonial-company" id="testimonial-company">Live Your Truth LLC</div>
+      </div>
+
+      <button class="testimonial-arrow" id="next-testimonial" aria-label="Next testimonial">
+        &#10095;
+      </button>
+    </div>
+  </div>
+</section>
 <script>
 const filterButtons = document.querySelectorAll(".filter-btn");
 const cards = document.querySelectorAll(".card");
@@ -546,6 +633,74 @@ navLinks.forEach((link) => {
   if (href === "index.html" && currentPage === "index.html") {
     link.classList.add("active");
   }
+/* TESTIMONIAL ROTATION */
+const testimonials = [
+  {
+    text: "“Bryce is a talented editor and storyteller, and someone I would gladly work with again. I highly recommend him to anyone looking for someone who can combine creativity, professionalism, and a strong sense of story.”",
+    name: "— Timothy Kavmark",
+    company: "Live Your Truth LLC"
+  },
+  {
+    text: "“Bryce did such a good job, we were so touched by the time and effort he put into immortalizing our big day.”",
+    name: "— Tawni Dunn",
+    company: "Family Friend"
+  }
+];
+
+let currentTestimonial = 0;
+let testimonialInterval;
+
+const testimonialCard = document.getElementById("testimonial-card");
+const testimonialText = document.getElementById("testimonial-text");
+const testimonialName = document.getElementById("testimonial-name");
+const testimonialCompany = document.getElementById("testimonial-company");
+const prevButton = document.getElementById("prev-testimonial");
+const nextButton = document.getElementById("next-testimonial");
+
+function updateTestimonial(index) {
+  testimonialText.textContent = testimonials[index].text;
+  testimonialName.textContent = testimonials[index].name;
+  testimonialCompany.textContent = testimonials[index].company;
+}
+
+function changeTestimonial(newIndex) {
+  testimonialCard.classList.add("fade-out");
+
+  setTimeout(() => {
+    currentTestimonial = (newIndex + testimonials.length) % testimonials.length;
+    updateTestimonial(currentTestimonial);
+    testimonialCard.classList.remove("fade-out");
+  }, 600);
+}
+
+function nextTestimonial() {
+  changeTestimonial(currentTestimonial + 1);
+}
+
+function prevTestimonial() {
+  changeTestimonial(currentTestimonial - 1);
+}
+
+function startTestimonialRotation() {
+  testimonialInterval = setInterval(nextTestimonial, 10000);
+}
+
+function resetTestimonialRotation() {
+  clearInterval(testimonialInterval);
+  startTestimonialRotation();
+}
+
+nextButton?.addEventListener("click", () => {
+  nextTestimonial();
+  resetTestimonialRotation();
+});
+
+prevButton?.addEventListener("click", () => {
+  prevTestimonial();
+  resetTestimonialRotation();
+});
+
+startTestimonialRotation();
 });
 </script>
 
