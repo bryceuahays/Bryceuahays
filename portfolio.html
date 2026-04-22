@@ -16,6 +16,7 @@
   --accent: #7c9cff;
   --accent-2: #8ef0d0;
   --shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+  --radius: 22px;
 }
 
 * {
@@ -139,6 +140,27 @@ h1 {
   letter-spacing: -0.03em;
 }
 
+/* SECTION HEADER */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: end;
+  margin-bottom: 1.25rem;
+}
+
+.section-header h2 {
+  margin: 0;
+  font-size: clamp(1.7rem, 3vw, 2.4rem);
+  letter-spacing: -0.03em;
+}
+
+.section-header p {
+  margin: 0;
+  color: var(--muted);
+  max-width: 55ch;
+}
+
 /* FILTERS */
 .filters {
   display: flex;
@@ -222,23 +244,16 @@ h1 {
   font-size: 1.05rem;
 }
 
-/* MOBILE */
-@media (max-width: 900px) {
-  .grid {
-    grid-template-columns: 1fr;
-  }
-
-  .nav-inner {
-    flex-direction: column;
-    align-items: flex-start;
-  }
 /* TESTIMONIALS */
+#testimonial {
+  padding: 0 0 2rem;
+}
+
 .testimonial-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  margin-top: 2rem;
 }
 
 .testimonial-card {
@@ -285,13 +300,57 @@ h1 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.2s ease, background 0.2s ease;
+  transition: transform 0.2s ease, background 0.2s ease, opacity 0.2s ease;
+  flex-shrink: 0;
 }
 
 .testimonial-arrow:hover {
   transform: translateY(-1px);
   background: rgba(255, 255, 255, 0.1);
 }
+
+.testimonial-arrow:active {
+  transform: translateY(0);
+}
+
+/* FOOTER */
+.footer {
+  padding: 2.5rem 0 4rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* MOBILE */
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .section-header {
+    align-items: start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .testimonial-wrapper {
+    gap: 0.6rem;
+  }
+
+  .testimonial-arrow {
+    width: 42px;
+    height: 42px;
+    font-size: 1.2rem;
+  }
+
+  .testimonial-card {
+    padding: 1.25rem;
+  }
 }
 </style>
 </head>
@@ -371,201 +430,202 @@ h1 {
     </div>
 
     <div class="card" data-tags="youtube vlog">
-    <div class="video-frame">
-      <iframe
-         src="https://www.youtube.com/embed/suQdft0Q77g"
-         title="Project 2"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen>
-       </iframe>
+      <div class="video-frame">
+        <iframe
+          src="https://www.youtube.com/embed/suQdft0Q77g"
+          title="Project 4"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="card-body">
+        <div class="tag">Youtube • Vlog</div>
+        <h3>The Great Journey</h3>
+      </div>
     </div>
-     <div class="card-body">
-       <div class="tag">Youtube • Vlog</div>
-      <h3>The Great Journey</h3>
-     </div>
-   </div>
 
-  <div class="card" data-tags="youtube">
-    <div class="video-frame">
-      <iframe
-         src="https://www.youtube.com/embed/iAVTSt2JfKY"
-         title="Project 2"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen>
-       </iframe>
+    <div class="card" data-tags="youtube">
+      <div class="video-frame">
+        <iframe
+          src="https://www.youtube.com/embed/iAVTSt2JfKY"
+          title="Project 5"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="card-body">
+        <div class="tag">Youtube</div>
+        <h3>Optic Halo Gets SHUT DOWN</h3>
+      </div>
     </div>
-     <div class="card-body">
-       <div class="tag">Youtube</div>
-      <h3>Optic Halo Gets SHUT DOWN</h3>
-     </div>
-   </div>
 
-  <div class="card" data-tags="youtube essay">
-    <div class="video-frame">
-      <iframe
-         src="https://www.youtube.com/embed/tlM3xSpxK5g"
-         title="Project 2"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen>
-       </iframe>
+    <div class="card" data-tags="youtube essay">
+      <div class="video-frame">
+        <iframe
+          src="https://www.youtube.com/embed/tlM3xSpxK5g"
+          title="Project 6"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="card-body">
+        <div class="tag">Youtube • Video Essay</div>
+        <h3>Does Optic Halo Need a Roster Change?</h3>
+      </div>
     </div>
-     <div class="card-body">
-       <div class="tag">Youtube • Video Essay</div>
-      <h3>Does Optic Halo Need a Roster Change?</h3>
-     </div>
-   </div>
   
     <div class="card" data-tags="youtube howto">
-    <div class="video-frame">
-      <iframe
-         src="https://www.youtube.com/embed/rWqj3MD_WWo"
-         title="Project 2"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen>
-       </iframe>
+      <div class="video-frame">
+        <iframe
+          src="https://www.youtube.com/embed/rWqj3MD_WWo"
+          title="Project 7"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="card-body">
+        <div class="tag">Youtube • How-to</div>
+        <h3>Sprint Doesn't Belong In Halo</h3>
+      </div>
     </div>
-     <div class="card-body">
-       <div class="tag">Youtube • How-to</div>
-      <h3>Sprint Doesn't Belong In Halo</h3>
-     </div>
-   </div>
 
-  <div class="card" data-tags="youtube howto">
-    <div class="video-frame">
-      <iframe
-         src="https://www.youtube.com/embed/W8X_qIwOeqA"
-         title="Project 2"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen>
-       </iframe>
+    <div class="card" data-tags="youtube howto">
+      <div class="video-frame">
+        <iframe
+          src="https://www.youtube.com/embed/W8X_qIwOeqA"
+          title="Project 8"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="card-body">
+        <div class="tag">Youtube • How-to</div>
+        <h3>Work 10x Better with Your Team</h3>
+      </div>
     </div>
-     <div class="card-body">
-       <div class="tag">Youtube • How-to</div>
-      <h3>Work 10x Better with Your Team</h3>
-     </div>
-   </div>
 
-  <div class="card" data-tags="youtube essay">
-    <div class="video-frame">
-      <iframe
-         src="https://www.youtube.com/embed/2qVC7Dvd2HU"
-         title="Project 2"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen>
-       </iframe>
+    <div class="card" data-tags="youtube essay">
+      <div class="video-frame">
+        <iframe
+          src="https://www.youtube.com/embed/2qVC7Dvd2HU"
+          title="Project 9"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="card-body">
+        <div class="tag">Youtube • Video Essay</div>
+        <h3>What 343 Needs To Do To Make A Comeback</h3>
+      </div>
     </div>
-     <div class="card-body">
-       <div class="tag">Youtube • Video Essay</div>
-      <h3>What 343 Needs To Do To Make A Comeback</h3>
-     </div>
-   </div>
 
-  <div class="card" data-tags="youtube highlight">
-    <div class="video-frame">
-      <iframe
-         src="https://www.youtube.com/embed/DUAIYaQC9IY"
-         title="Project 2"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen>
-       </iframe>
+    <div class="card" data-tags="youtube highlight">
+      <div class="video-frame">
+        <iframe
+          src="https://www.youtube.com/embed/DUAIYaQC9IY"
+          title="Project 10"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="card-body">
+        <div class="tag">Youtube • Highlights</div>
+        <h3>Best Of Optic Halo at HCS Fort Worth</h3>
+      </div>
     </div>
-     <div class="card-body">
-       <div class="tag">Youtube • Highlights </div>
-      <h3>Best Of Optic Halo at HCS Fort Worth</h3>
-     </div>
-   </div>
 
-  <div class="card" data-tags="wedding">
-    <div class="video-frame">
-      <iframe
-         src="https://www.youtube.com/embed/nzLGMy7lxcE"
-         title="Project 2"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen>
-       </iframe>
+    <div class="card" data-tags="wedding">
+      <div class="video-frame">
+        <iframe
+          src="https://www.youtube.com/embed/nzLGMy7lxcE"
+          title="Project 11"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="card-body">
+        <div class="tag">Weddings</div>
+        <h3>T&amp;T Wedding</h3>
+      </div>
     </div>
-     <div class="card-body">
-       <div class="tag">Weddings</div>
-      <h3>T&T Wedding</h3>
-     </div>
-   </div>
 
-  <div class="card" data-tags="business">
-    <div class="video-frame">
-      <iframe
-         src="https://www.youtube.com/embed/kHzNuD-0JP0"
-         title="Project 2"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen>
-       </iframe>
+    <div class="card" data-tags="business">
+      <div class="video-frame">
+        <iframe
+          src="https://www.youtube.com/embed/kHzNuD-0JP0"
+          title="Project 12"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="card-body">
+        <div class="tag">Business</div>
+        <h3>Amanda Wardrobe Transformation</h3>
+      </div>
     </div>
-     <div class="card-body">
-       <div class="tag">Business</div>
-      <h3>Amanda Wardrobe Transformation</h3>
-     </div>
-   </div>
 
-  <div class="card" data-tags="business">
-    <div class="video-frame">
-      <iframe
-         src="https://www.youtube.com/embed/K5TCXzlF2S8"
-         title="Project 2"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen>
-       </iframe>
+    <div class="card" data-tags="business">
+      <div class="video-frame">
+        <iframe
+          src="https://www.youtube.com/embed/K5TCXzlF2S8"
+          title="Project 13"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="card-body">
+        <div class="tag">Business</div>
+        <h3>Amanda Hair Transformation</h3>
+      </div>
     </div>
-     <div class="card-body">
-       <div class="tag">Business</div>
-      <h3>Amanda Hair Transformation</h3>
-     </div>
-   </div>
 
-  <div class="card" data-tags="business">
-    <div class="video-frame">
-      <iframe
-         src="https://www.youtube.com/embed/xby-waoGS9M"
-         title="Project 2"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen>
-       </iframe>
+    <div class="card" data-tags="business">
+      <div class="video-frame">
+        <iframe
+          src="https://www.youtube.com/embed/xby-waoGS9M"
+          title="Project 14"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="card-body">
+        <div class="tag">Business</div>
+        <h3>Amanda Makeup Transformation</h3>
+      </div>
     </div>
-     <div class="card-body">
-       <div class="tag">Business</div>
-      <h3>Amanda Makeup Transformation</h3>
-     </div>
-   </div>
 
-  <div class="card" data-tags="business">
-    <div class="video-frame">
-      <iframe
-         src="https://www.youtube.com/embed/E7wBg0VAOHQ"
-         title="Project 2"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen>
-       </iframe>
+    <div class="card" data-tags="business">
+      <div class="video-frame">
+        <iframe
+          src="https://www.youtube.com/embed/E7wBg0VAOHQ"
+          title="Project 15"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="card-body">
+        <div class="tag">Business</div>
+        <h3>Sarah Hair Transormation</h3>
+      </div>
     </div>
-     <div class="card-body">
-       <div class="tag">Business</div>
-      <h3>Sarah Hair Transormation</h3>
-     </div>
-   </div>
 
-  <div class="card" data-tags="business">
-    <div class="video-frame">
-      <iframe
-         src="https://www.youtube.com/embed/1iTVE-11FAA"
-         title="Project 2"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen>
-       </iframe>
+    <div class="card" data-tags="business">
+      <div class="video-frame">
+        <iframe
+          src="https://www.youtube.com/embed/1iTVE-11FAA"
+          title="Project 16"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="card-body">
+        <div class="tag">Business</div>
+        <h3>Sarah Makeup Transformation</h3>
+      </div>
     </div>
-     <div class="card-body">
-       <div class="tag">Business</div>
-      <h3>Sarah Makeup Transformation</h3>
-     </div>
-   </div>
   </div>
 </div>
+
 <section id="testimonial">
   <div class="container">
     <div class="section-header">
@@ -594,9 +654,16 @@ h1 {
     </div>
   </div>
 </section>
+
+<footer class="footer">
+  <div class="container">
+    © 2026 Brycinema • Built to showcase editing, storytelling, and client-ready work.
+  </div>
+</footer>
+
 <script>
 const filterButtons = document.querySelectorAll(".filter-btn");
-const cards = document.querySelectorAll(".card");
+const cards = document.querySelectorAll(".grid .card");
 
 filterButtons.forEach((btn) => {
   btn.addEventListener("click", () => {
@@ -633,6 +700,8 @@ navLinks.forEach((link) => {
   if (href === "index.html" && currentPage === "index.html") {
     link.classList.add("active");
   }
+});
+
 /* TESTIMONIAL ROTATION */
 const testimonials = [
   {
@@ -701,7 +770,6 @@ prevButton?.addEventListener("click", () => {
 });
 
 startTestimonialRotation();
-});
 </script>
 
 </body>
